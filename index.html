@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Saloni &amp; Sahil | 24 October, Udaipur</title>
+<title>Saloni &amp; Sahil | 23–24 October 2026, Udaipur</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Marcellus&family=Jost:wght@300;400;500;600&family=Rozha+One&display=swap" rel="stylesheet">
@@ -17,7 +17,6 @@
     --gold-bright:#FFD700;
     --deep-maroon:#4A0000;
     --royal-velvet:#0a1128;
-    --charcoal:#2B1B17;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -28,7 +27,7 @@
     font-weight: 300;
     overflow-x: hidden;
     position: relative;
-    padding-top: 50px;
+    padding-top: 45px;
   }
 
   /* Canvas Background */
@@ -67,13 +66,13 @@
   .nav{
     position:fixed; top:0; left:0; right:0; z-index:50;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:8px 12px;
+    padding:6px 12px;
     background: rgba(10, 17, 40, 0.95);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--gold);
   }
-  .nav-mono{font-family:'Cinzel Decorative', serif; font-size:1.1rem; font-weight: 700; color:var(--gold-bright); margin-bottom: 4px;}
-  .nav-links{display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; font-family:'Marcellus', serif; font-size:.7rem;}
+  .nav-mono{font-family:'Cinzel Decorative', serif; font-size:1.1rem; font-weight: 700; color:var(--gold-bright); margin-bottom: 2px;}
+  .nav-links{display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; font-family:'Marcellus', serif; font-size:.65rem;}
   .nav-links a{color: var(--gold-light);}
 
   /* Floating Music Toggle */
@@ -86,31 +85,6 @@
     padding: 8px 14px; border-radius: 999px;
     font-family: 'Marcellus', serif; font-size: .7rem; letter-spacing: .1em;
     cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-  }
-
-  /* Ganesh Section */
-  .ganesha-wrapper { display: flex; flex-direction: column; align-items: center; margin-bottom: 12px; }
-  .ganesha-img {
-    width: 75px; height: 75px; object-fit: contain;
-    filter: drop-shadow(0 0 10px var(--gold-bright));
-  }
-  .shree-ganesh-text { font-family: 'Rozha One', serif; color: var(--gold-light); font-size: .85rem; margin-top: 6px; }
-
-  /* Hero Section */
-  .hero{
-    padding: 30px 16px;
-    text-align: center;
-    display: flex; flex-direction: column; align-items: center;
-  }
-  .hero h1{
-    font-size: 2.2rem; line-height: 1.15; margin: 10px 0; color: var(--gold-light);
-  }
-  .hero .amp{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 1.8rem; color:var(--gold-bright); }
-  .hero .families{ font-size: .85rem; letter-spacing: .05em; color: var(--gold-light); }
-  .hero .date-line{
-    margin-top: 16px; font-family:'Marcellus', serif; font-size: .8rem;
-    color: var(--gold-bright); background: rgba(212, 175, 55, 0.15);
-    padding: 8px 16px; border: 1px solid var(--gold); border-radius: 30px;
   }
 
   /* Prominent Image Frames */
@@ -126,67 +100,88 @@
   }
 
   /* Section Bands */
-  .band{ padding: 36px 0; position: relative; }
-  .heading-block{ text-align: center; margin-bottom: 20px; }
+  .band{ padding: 32px 0; position: relative; }
+  .heading-block{ text-align: center; margin-bottom: 16px; }
   .heading-block h2{ font-size: 1.6rem; color: var(--gold-light); margin-top: 4px; }
   .heading-block p{ font-size: .85rem; opacity: .9; margin-top: 6px; }
 
-  .welcome-copy{ text-align: center; }
-  .welcome-copy p{ font-size: 1.05rem; line-height: 1.6; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold-light); }
-  .signature-names{ margin-top: 14px; font-family: 'Marcellus', serif; font-size: .85rem; color: var(--gold-bright); font-weight: bold; }
+  /* Hero Page 1 */
+  .hero-p1{
+    padding: 24px 16px;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .hero-p1 h1{
+    font-size: 2.2rem; line-height: 1.15; margin: 8px 0; color: var(--gold-light);
+  }
+  .hero-p1 .amp{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 1.8rem; color:var(--gold-bright); }
+  .hero-p1 .families{ font-size: .85rem; letter-spacing: .05em; color: var(--gold-light); }
+  .hero-p1 .date-line{
+    margin-top: 14px; font-family:'Marcellus', serif; font-size: .8rem;
+    color: var(--gold-bright); background: rgba(212, 175, 55, 0.15);
+    padding: 8px 16px; border: 1px solid var(--gold); border-radius: 30px;
+  }
 
-  /* Family Cards */
+  /* Text & Copy Styling */
+  .blessings-text{
+    font-family: 'Rozha One', serif;
+    font-size: 1.25rem;
+    color: var(--gold-bright);
+    text-align: center;
+    margin: 12px 0;
+  }
+  .welcome-copy{ text-align: center; }
+  .welcome-copy p{ font-size: 1rem; line-height: 1.6; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold-light); }
+
+  /* Family Cards Page 3 */
   .family-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
   .family-card {
     background: linear-gradient(160deg, rgba(74, 0, 0, 0.85), rgba(10, 17, 40, 0.95));
-    border: 1.5px solid var(--gold); border-radius: 12px; padding: 20px 16px; text-align: center;
+    border: 1.5px solid var(--gold); border-radius: 12px; padding: 18px 14px; text-align: center;
   }
-  .family-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--gold-bright); border-bottom: 1px solid rgba(212, 175, 55, 0.3); padding-bottom: 6px; }
-  .family-member { margin-bottom: 8px; font-size: .85rem; line-height: 1.4; }
+  .family-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--gold-bright); border-bottom: 1px solid rgba(212, 175, 55, 0.3); padding-bottom: 6px; }
+  .family-member { margin-bottom: 10px; font-size: .85rem; line-height: 1.4; }
   .family-member .relation { font-family: 'Marcellus', serif; font-size: .65rem; text-transform: uppercase; color: var(--gold); display: block; }
   .family-member .name { color: var(--ivory); font-weight: 500; }
 
-  /* Countdown Mobile */
+  /* Countdown Page 4 */
   .countdown{ display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
   .countdown .unit{
-    width: 60px; padding: 8px 2px; border: 1px solid var(--gold); border-radius: 8px;
+    width: 65px; padding: 8px 2px; border: 1px solid var(--gold); border-radius: 8px;
     background: rgba(74, 0, 0, 0.9); text-align: center;
   }
   .countdown .num{ font-family: 'Rozha One', serif; font-size: 1.2rem; color: var(--gold-bright); }
   .countdown .lbl{ font-size: .5rem; text-transform: uppercase; color: var(--gold-light); }
 
-  /* Events Cards Mobile */
-  .events{ display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
-  .event-card{
+  /* Individual Event Cards Page 5, 6, 7 */
+  .single-event-card{
     background: linear-gradient(160deg, rgba(74, 0, 0, 0.9), rgba(35, 0, 0, 0.95));
     border: 1.5px solid var(--gold); border-radius: 12px; padding: 20px 16px; text-align: center;
+    max-width: 480px; margin: 12px auto 0;
   }
-  .event-card .day{ font-family: 'Marcellus', serif; font-size: .7rem; color: var(--gold-bright); text-transform: uppercase; }
-  .event-card h3{ margin: 6px 0 4px; font-size: 1.3rem; color: var(--gold-light); }
-  .event-card .time{ font-size: .8rem; color: var(--gold); display: block; margin-bottom: 8px; font-weight: 600; }
-  .event-card p{ font-size: .85rem; line-height: 1.5; color: var(--ivory); }
+  .single-event-card .day{ font-family: 'Marcellus', serif; font-size: .75rem; color: var(--gold-bright); text-transform: uppercase; }
+  .single-event-card h3{ margin: 6px 0 4px; font-size: 1.35rem; color: var(--gold-light); }
+  .single-event-card .time{ font-size: .85rem; color: var(--gold); display: block; margin-bottom: 8px; font-weight: 600; }
+  .single-event-card p{ font-size: .85rem; line-height: 1.5; color: var(--ivory); }
 
-  /* Venue Mobile */
-  .venue-list{ margin-top: 14px; list-style: none; }
-  .venue-list li{ padding: 8px 0; border-top: 1px dashed var(--gold); display: flex; justify-content: space-between; font-size: .8rem; }
-  .venue-list li:last-child{ border-bottom: 1px dashed var(--gold); }
-  .venue-list span:last-child{ color: var(--gold-bright); font-weight: 600; text-align: right; }
-
-  /* Gallery Mobile */
-  .gallery{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 16px; }
-  .frame{ aspect-ratio: 3/4; border: 1px solid var(--gold); padding: 4px; background: rgba(43, 0, 0, 0.8); border-radius: 6px; }
-  .frame .inner{ width: 100%; height: 100%; border-radius: 4px; overflow: hidden; }
-  .frame .inner img{ width: 100%; height: 100%; object-fit: cover; }
+  /* Venue Page 8 */
+  .venue-box {
+    text-align: center; background: rgba(74, 0, 0, 0.7);
+    border: 1px solid var(--gold); border-radius: 10px;
+    padding: 16px; margin-top: 12px;
+  }
+  .venue-box h3 { font-size: 1.3rem; color: var(--gold-bright); margin-bottom: 4px; }
+  .venue-box p { font-size: .9rem; color: var(--gold-light); }
 
   footer{
     background: var(--royal-velvet); color: var(--gold-light);
-    text-align: center; padding: 30px 16px; border-top: 1.5px solid var(--gold);
+    text-align: center; padding: 24px 16px; border-top: 1.5px solid var(--gold);
     position: relative; z-index: 2; margin-top: 20px;
   }
   .footer-mono{ font-family: 'Rozha One', serif; font-size: 1.2rem; color: var(--gold-bright); }
-  footer p{ margin-top: 6px; font-size: .75rem; opacity: .85; }
+  footer p{ margin-top: 4px; font-size: .75rem; opacity: .85; }
 
-  .divider-flowers{ display: flex; justify-content: center; align-items: center; gap: 10px; padding: 10px 0; z-index: 2; position: relative; }
+  .divider-flowers{ display: flex; justify-content: center; align-items: center; gap: 10px; padding: 8px 0; z-index: 2; position: relative; }
   .divider-flowers svg{ width: 18px; height: 18px; fill: var(--gold); }
   .divider-flowers .stem{ width: 40px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
 </style>
@@ -206,21 +201,16 @@
 <nav class="nav" id="nav">
   <div class="nav-mono">S &amp; S</div>
   <div class="nav-links">
-    <a href="#story">Welcome</a>
-    <a href="#family">Family</a>
-    <a href="#events">Events</a>
-    <a href="#venue">Venue</a>
-    <a href="#gallery">Gallery</a>
+    <a href="#page1">Home</a>
+    <a href="#page3">Invites</a>
+    <a href="#page4">Date</a>
+    <a href="#page5">Events</a>
+    <a href="#page8">Venue</a>
   </div>
 </nav>
 
-<header class="hero">
-  <div class="ganesha-wrapper">
-    <img src="Ganeshji.jpg" alt="Lord Ganesha" class="ganesha-img">
-    <div class="shree-ganesh-text">|| श्री गणेशाय नमः ||</div>
-  </div>
-
-  <div class="eyebrow" style="margin-top: 8px;">✦ Shubh Vivah ✦</div>
+<section class="hero-p1" id="page1">
+  <div class="eyebrow" style="margin-top: 6px;">✦ Shubh Vivah ✦</div>
   <div class="eyebrow" style="color:var(--gold-light); margin-top:2px;">Together with their families</div>
 
   <h1>Saloni <span class="amp">&amp;</span> Sahil</h1>
@@ -228,9 +218,9 @@
   <div class="date-line">23 &mdash; 24 October 2026 &nbsp;|&nbsp; Udaipur</div>
 
   <div class="prominent-img-frame">
-    <img src="p2.webp" alt="Shrinathji Blessing Frame">
+    <img src="p0.webp" alt="Shubh Vivah Background">
   </div>
-</header>
+</section>
 
 <div class="divider-flowers">
   <div class="stem"></div>
@@ -238,61 +228,77 @@
   <div class="stem"></div>
 </div>
 
-<section class="band" id="story">
+<section class="band" id="page2">
+  <div class="wrap">
+    <div class="blessings-text">
+      With the blessings of Sawariya Seth
+    </div>
+    <div class="prominent-img-frame">
+      <img src="p2.webp" alt="Sawariya Seth Blessings Background">
+    </div>
+  </div>
+</section>
+
+<div class="divider-flowers">
+  <div class="stem"></div>
+  <svg viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
+  <div class="stem"></div>
+</div>
+
+<section class="band" id="page3">
   <div class="wrap">
     <div class="heading-block">
-      <div class="eyebrow">With blessings &amp; joy</div>
+      <div class="eyebrow">Personal Invitation</div>
       <h2>You're Invited</h2>
     </div>
     <div class="welcome-copy">
       <p>Amid the regal palaces and quiet lakes of Udaipur, Saloni and Sahil begin their eternal journey. We request the honor of your presence and blessings.</p>
-      <div class="signature-names">SALONI ROHIRA &nbsp;&amp;&nbsp; SAHIL BAJAJ</div>
     </div>
 
     <div class="prominent-img-frame">
-      <img src="p0.webp" alt="Welcome Highlight">
-    </div>
-  </div>
-</section>
-
-<section class="band" id="family">
-  <div class="wrap">
-    <div class="heading-block">
-      <div class="eyebrow">Pillars of Love</div>
-      <h2>Family Blessings</h2>
-    </div>
-
-    <div class="prominent-img-frame">
-      <img src="p3.webp" alt="Family Artwork">
+      <img src="p3.webp" alt="Invitation Background">
     </div>
 
     <div class="family-grid">
       <div class="family-card">
-        <h3>Bride's Family</h3>
+        <h3>SALONI ROHIRA</h3>
         <div class="family-member">
-          <span class="relation">Grandparents</span>
+          <span class="relation">Granddaughter of</span>
           <span class="name">Late Smt. Sheela Devi Rohira &amp;<br>Late Shri Mohanlal Ji Rohira</span>
         </div>
-      </div>
-      <div class="family-card">
-        <h3>Groom's Family</h3>
         <div class="family-member">
-          <span class="relation">Grandparents</span>
+          <span class="relation">Daughter of</span>
+          <span class="name">Smt. Nisha Rohira &amp;<br>Shri Deepak Rohira</span>
+        </div>
+      </div>
+
+      <div style="text-align:center; font-family:'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gold-bright); font-style: italic;">&amp;</div>
+
+      <div class="family-card">
+        <h3>SAHIL BAJAJ</h3>
+        <div class="family-member">
+          <span class="relation">Grandson of</span>
           <span class="name">Smt. Meera Bai Ji Bajaj &amp;<br>Late Shri Lajpat Rai Ji Bajaj</span>
         </div>
-        <div class="family-member" style="margin-top: 10px;">
-          <span class="relation">Parents</span>
-          <span class="name">Riya Bajaj &amp; Kamal Bajaj</span>
+        <div class="family-member">
+          <span class="relation">Son of</span>
+          <span class="name">Smt. Riya Bajaj &amp;<br>Shri Kamal Bajaj</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="band" id="events">
+<div class="divider-flowers">
+  <div class="stem"></div>
+  <svg viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
+  <div class="stem"></div>
+</div>
+
+<section class="band" id="page4">
   <div class="wrap">
     <div class="heading-block">
-      <div class="eyebrow">Save the date</div>
+      <div class="eyebrow">Save the Date</div>
       <h2>A Royal Celebration</h2>
       <div class="countdown" id="countdown">
         <div class="unit"><div class="num" id="cd-days">00</div><div class="lbl">Days</div></div>
@@ -303,69 +309,85 @@
     </div>
 
     <div class="prominent-img-frame">
-      <img src="p4.webp" alt="Celebration Decor">
-    </div>
-
-    <div class="events">
-      <div class="event-card">
-        <div class="day">23 October</div>
-        <h3>Engagement &amp; Cocktail</h3>
-        <span class="time">Evening 8:00 PM Onwards</span>
-        <p>An evening of music, dance performances, and celebration at Hari Priya Resort.</p>
-      </div>
-      <div class="event-card">
-        <div class="day">24 October</div>
-        <h3>Wedding &amp; Pheras</h3>
-        <span class="time">Afternoon 2:30 PM</span>
-        <p>Saloni and Sahil take their vows in a traditional ceremony, surrounded by love.</p>
-      </div>
-      <div class="event-card">
-        <div class="day">24 October</div>
-        <h3>Reception</h3>
-        <span class="time">Evening 8:00 PM</span>
-        <p>An evening of feasting and celebration under the Udaipur sky.</p>
-      </div>
+      <img src="p4.webp" alt="Save The Date Background">
     </div>
   </div>
 </section>
 
-<section class="band" id="venue">
+<div class="divider-flowers">
+  <div class="stem"></div>
+  <svg viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
+  <div class="stem"></div>
+</div>
+
+<section class="band" id="page5">
   <div class="wrap">
     <div class="heading-block">
-      <div class="eyebrow">Destination</div>
-      <h2>Hari Priya Resort</h2>
+      <div class="eyebrow">Event Details</div>
+    </div>
+    <div class="single-event-card">
+      <div class="day">23 October</div>
+      <h3>Engagement &amp; Cocktail</h3>
+      <span class="time">Evening 8:00 PM Onwards</span>
+      <p>An evening of music, dance performances, and celebration at Hari Priya Resort.</p>
+    </div>
+
+    <div class="prominent-img-frame">
+      <img src="p1.webp" alt="Engagement Event Background">
+    </div>
+  </div>
+</section>
+
+<section class="band" id="page6">
+  <div class="wrap">
+    <div class="single-event-card">
+      <div class="day">24 October</div>
+      <h3>Wedding &amp; Pheras</h3>
+      <span class="time">Afternoon 2:30 PM</span>
+      <p>Saloni and Sahil take their vows in a traditional ceremony, surrounded by love.</p>
+    </div>
+
+    <div class="prominent-img-frame">
+      <img src="p6.webp" alt="Wedding Pheras Background">
+    </div>
+  </div>
+</section>
+
+<section class="band" id="page7">
+  <div class="wrap">
+    <div class="single-event-card">
+      <div class="day">24 October</div>
+      <h3>Reception</h3>
+      <span class="time">Evening 8:00 PM</span>
+      <p>An evening of feasting and celebration under the Udaipur sky.</p>
+    </div>
+
+    <div class="prominent-img-frame">
+      <img src="p7.webp" alt="Reception Event Background">
+    </div>
+  </div>
+</section>
+
+<div class="divider-flowers">
+  <div class="stem"></div>
+  <svg viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
+  <div class="stem"></div>
+</div>
+
+<section class="band" id="page8">
+  <div class="wrap">
+    <div class="heading-block">
+      <div class="eyebrow">Location</div>
+      <h2>Destination</h2>
+    </div>
+
+    <div class="venue-box">
+      <h3>Hari Priya Resort</h3>
       <p>City of Lakes, Udaipur</p>
     </div>
 
     <div class="prominent-img-frame">
-      <img src="p7.webp" alt="Venue View">
-    </div>
-
-    <ul class="venue-list">
-      <li><span>Venue</span><span>Hari Priya Resort, Udaipur</span></li>
-      <li><span>Engagement &amp; Cocktail</span><span>23 Oct · Evening</span></li>
-      <li><span>Wedding &amp; Pheras</span><span>24 Oct · Afternoon</span></li>
-      <li><span>Reception</span><span>24 Oct · Evening</span></li>
-    </ul>
-  </div>
-</section>
-
-<section class="band" id="gallery">
-  <div class="wrap">
-    <div class="heading-block">
-      <div class="eyebrow">Moments</div>
-      <h2>Glimpses of Love</h2>
-    </div>
-
-    <div class="prominent-img-frame">
-      <img src="p6.webp" alt="Couple Showcase">
-    </div>
-
-    <div class="gallery">
-      <div class="frame"><div class="inner"><img src="gallery-1.jpg" alt="Gallery 1"></div></div>
-      <div class="frame"><div class="inner"><img src="gallery-2.jpg" alt="Gallery 2"></div></div>
-      <div class="frame"><div class="inner"><img src="gallery-3.jpg" alt="Gallery 3"></div></div>
-      <div class="frame"><div class="inner"><img src="gallery-4.jpg" alt="Gallery 4"></div></div>
+      <img src="p0.webp" alt="Destination Background">
     </div>
   </div>
 </section>
@@ -376,7 +398,7 @@
 </footer>
 
 <script>
-  // Countdown Timer
+  // Countdown Timer Script
   const target = new Date('2026-10-24T00:00:00');
   function updateCountdown(){
     const now = new Date();
@@ -390,7 +412,7 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Floating Particle Animation
+  // Floating Particles Animation
   const canvas = document.getElementById('bgCanvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
@@ -437,7 +459,7 @@
   }
   animateCanvas();
 
-  // Audio Control
+  // Audio Player Toggle
   const musicBtn = document.getElementById('musicToggle');
   const bgmEl = document.getElementById('bgm');
   let isPlaying = false;
