@@ -1,485 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Saloni &amp; Sahil | 23–24 October 2026, Udaipur</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Marcellus&family=Jost:wght@300;400;500;600&family=Rozha+One&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ivory:#FFFDF9;
-    --royal-red:#8B0000;
-    --crimson:#A81C1C;
-    --gold:#D4AF37;
-    --gold-light:#F7E7B4;
-    --gold-bright:#FFD700;
-    --deep-maroon:#4A0000;
-    --royal-velvet:#0a1128;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background: var(--royal-velvet);
-    color: var(--ivory);
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-    position: relative;
-    padding-top: 45px;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saloni & Sahil - Wedding Invitation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  /* Canvas Background */
-  #bgCanvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    pointer-events: none;
-    z-index: 1;
-  }
+        body, html {
+            height: 100%;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #4a2e16;
+            background-color: #0b1d3a;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
 
-  h1,h2,h3{ font-family: 'Rozha One', serif; color: var(--gold-light); }
-  .eyebrow{
-    font-family: 'Marcellus', serif;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    font-size: .75rem;
-    color: var(--gold);
-  }
-  a{color:inherit;text-decoration:none;}
-  img{max-width:100%;display:block;}
-  section{position:relative; z-index: 2;}
-  .wrap{max-width:100%; padding: 0 16px; margin: 0 auto;}
+        .page {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
 
-  /* Top/Bottom Zari Border */
-  body::before, body::after{
-    content:"";
-    position:fixed; left:0; right:0; height:6px; z-index:55; pointer-events:none;
-    background: linear-gradient(90deg, var(--deep-maroon), var(--gold) 25%, var(--crimson) 50%, var(--gold) 75%, var(--deep-maroon) 100%);
-    box-shadow: 0 0 10px var(--gold-bright);
-  }
-  body::before{ top:0; }
-  body::after{ bottom:0; }
+        /* Image mapping per page */
+        #p1 { background-image: url('p0.webp'); }
+        #p2 { background-image: url('p2.webp'); }
+        #p3 { background-image: url('p3.webp'); }
+        #p4 { background-image: url('p4.webp'); }
+        #p5 { background-image: url('p1.webp'); }
+        #p6 { background-image: url('p6.webp'); }
+        #p7 { background-image: url('p7.webp'); }
+        #p8 { background-image: url('p0.webp'); }
 
-  /* Navigation Mobile Responsive */
-  .nav{
-    position:fixed; top:0; left:0; right:0; z-index:50;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:6px 12px;
-    background: rgba(10, 17, 40, 0.95);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--gold);
-  }
-  .nav-mono{font-family:'Cinzel Decorative', serif; font-size:1.1rem; font-weight: 700; color:var(--gold-bright); margin-bottom: 2px;}
-  .nav-links{display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; font-family:'Marcellus', serif; font-size:.65rem;}
-  .nav-links a{color: var(--gold-light);}
+        .content-box {
+            max-width: 320px;
+            width: 85%;
+            padding: 15px;
+            border-radius: 8px;
+        }
 
-  /* Floating Music Toggle */
-  .music-toggle{
-    position: fixed; bottom: 16px; right: 16px; z-index: 60;
-    display: flex; align-items: center; gap: 6px;
-    background: linear-gradient(135deg, var(--royal-red), var(--deep-maroon));
-    border: 1px solid var(--gold);
-    color: var(--gold-light);
-    padding: 8px 14px; border-radius: 999px;
-    font-family: 'Marcellus', serif; font-size: .7rem; letter-spacing: .1em;
-    cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-  }
+        h1 {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-  /* Prominent Image Frames */
-  .prominent-img-frame {
-    width: 100%; max-width: 480px; margin: 16px auto;
-    border: 1.5px solid var(--gold); border-radius: 12px;
-    overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    background: #000;
-  }
-  .prominent-img-frame img {
-    width: 100%; height: auto; max-height: 380px;
-    object-fit: contain; display: block; margin: 0 auto;
-  }
+        h2 {
+            font-size: 1.4rem;
+            color: #5c3a21;
+            margin: 10px 0;
+        }
 
-  /* Section Bands */
-  .band{ padding: 32px 0; position: relative; }
-  .heading-block{ text-align: center; margin-bottom: 16px; }
-  .heading-block h2{ font-size: 1.6rem; color: var(--gold-light); margin-top: 4px; }
-  .heading-block p{ font-size: .85rem; opacity: .9; margin-top: 6px; }
+        h3 {
+            font-size: 1.1rem;
+            color: #7a2021;
+            margin: 5px 0;
+        }
 
-  /* Hero Page 1 */
-  .hero-p1{
-    padding: 24px 16px;
-    text-align: center;
-    display: flex; flex-direction: column; align-items: center;
-  }
-  .hero-p1 h1{
-    font-size: 2.2rem; line-height: 1.15; margin: 8px 0; color: var(--gold-light);
-  }
-  .hero-p1 .amp{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size: 1.8rem; color:var(--gold-bright); }
-  .hero-p1 .families{ font-size: .85rem; letter-spacing: .05em; color: var(--gold-light); }
-  .hero-p1 .date-line{
-    margin-top: 14px; font-family:'Marcellus', serif; font-size: .8rem;
-    color: var(--gold-bright); background: rgba(212, 175, 55, 0.15);
-    padding: 8px 16px; border: 1px solid var(--gold); border-radius: 30px;
-  }
+        p {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin: 6px 0;
+        }
 
-  /* Text & Copy Styling */
-  .blessings-text{
-    font-family: 'Rozha One', serif;
-    font-size: 1.25rem;
-    color: var(--gold-bright);
-    text-align: center;
-    margin: 12px 0;
-  }
-  .welcome-copy{ text-align: center; }
-  .welcome-copy p{ font-size: 1rem; line-height: 1.6; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold-light); }
+        .subtext {
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
 
-  /* Family Cards Page 3 */
-  .family-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
-  .family-card {
-    background: linear-gradient(160deg, rgba(74, 0, 0, 0.85), rgba(10, 17, 40, 0.95));
-    border: 1.5px solid var(--gold); border-radius: 12px; padding: 18px 14px; text-align: center;
-  }
-  .family-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--gold-bright); border-bottom: 1px solid rgba(212, 175, 55, 0.3); padding-bottom: 6px; }
-  .family-member { margin-bottom: 10px; font-size: .85rem; line-height: 1.4; }
-  .family-member .relation { font-family: 'Marcellus', serif; font-size: .65rem; text-transform: uppercase; color: var(--gold); display: block; }
-  .family-member .name { color: var(--ivory); font-weight: 500; }
+        .divider {
+            margin: 8px 0;
+            font-weight: bold;
+        }
 
-  /* Countdown Page 4 */
-  .countdown{ display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
-  .countdown .unit{
-    width: 65px; padding: 8px 2px; border: 1px solid var(--gold); border-radius: 8px;
-    background: rgba(74, 0, 0, 0.9); text-align: center;
-  }
-  .countdown .num{ font-family: 'Rozha One', serif; font-size: 1.2rem; color: var(--gold-bright); }
-  .countdown .lbl{ font-size: .5rem; text-transform: uppercase; color: var(--gold-light); }
+        /* Dynamic Countdown Styles */
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
 
-  /* Individual Event Cards Page 5, 6, 7 */
-  .single-event-card{
-    background: linear-gradient(160deg, rgba(74, 0, 0, 0.9), rgba(35, 0, 0, 0.95));
-    border: 1.5px solid var(--gold); border-radius: 12px; padding: 20px 16px; text-align: center;
-    max-width: 480px; margin: 12px auto 0;
-  }
-  .single-event-card .day{ font-family: 'Marcellus', serif; font-size: .75rem; color: var(--gold-bright); text-transform: uppercase; }
-  .single-event-card h3{ margin: 6px 0 4px; font-size: 1.35rem; color: var(--gold-light); }
-  .single-event-card .time{ font-size: .85rem; color: var(--gold); display: block; margin-bottom: 8px; font-weight: 600; }
-  .single-event-card p{ font-size: .85rem; line-height: 1.5; color: var(--ivory); }
+        .timer-unit {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #d4af37;
+            padding: 8px;
+            border-radius: 6px;
+            min-width: 55px;
+        }
 
-  /* Venue Page 8 */
-  .venue-box {
-    text-align: center; background: rgba(74, 0, 0, 0.7);
-    border: 1px solid var(--gold); border-radius: 10px;
-    padding: 16px; margin-top: 12px;
-  }
-  .venue-box h3 { font-size: 1.3rem; color: var(--gold-bright); margin-bottom: 4px; }
-  .venue-box p { font-size: .9rem; color: var(--gold-light); }
+        .timer-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #7a2021;
+        }
 
-  footer{
-    background: var(--royal-velvet); color: var(--gold-light);
-    text-align: center; padding: 24px 16px; border-top: 1.5px solid var(--gold);
-    position: relative; z-index: 2; margin-top: 20px;
-  }
-  .footer-mono{ font-family: 'Rozha One', serif; font-size: 1.2rem; color: var(--gold-bright); }
-  footer p{ margin-top: 4px; font-size: .75rem; opacity: .85; }
+        .timer-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+        }
 
-  .divider-flowers{ display: flex; justify-content: center; align-items: center; gap: 10px; padding: 8px 0; z-index: 2; position: relative; }
-  .divider-flowers svg{ width: 18px; height: 18px; fill: var(--gold); }
-  .divider-flowers .stem{ width: 40px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-</style>
+        /* Music Overlay Trigger */
+        #audio-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(11, 29, 58, 0.92);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .btn-enter {
+            margin-top: 20px;
+            padding: 12px 28px;
+            background: #d4af37;
+            color: #0b1d3a;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
-<canvas id="bgCanvas"></canvas>
-
-<audio id="bgm" loop preload="none">
-  <source src="GEHRA HUA.mp3" type="audio/mpeg">
-</audio>
-
-<button id="musicToggle" class="music-toggle" aria-label="Play music">
-  <span class="note">🪕</span><span class="music-label">Music</span>
-</button>
-
-<nav class="nav" id="nav">
-  <div class="nav-mono">S &amp; S</div>
-  <div class="nav-links">
-    <a href="#page1">Home</a>
-    <a href="#page3">Invites</a>
-    <a href="#page4">Date</a>
-    <a href="#page5">Events</a>
-    <a href="#page8">Venue</a>
-  </div>
-</nav>
-
-<section class="hero-p1" id="page1">
-  <div class="eyebrow" style="margin-top: 6px;">✦ Shubh Vivah ✦</div>
-  <div class="eyebrow" style="color:var(--gold-light); margin-top:2px;">Together with their families</div>
-
-  <h1>Saloni <span class="amp">&amp;</span> Sahil</h1>
-  <div class="families">Rohira Family &nbsp;·&nbsp; Bajaj Family</div>
-  <div class="date-line">23 &mdash; 24 October 2026 &nbsp;|&nbsp; Udaipur</div>
-
-  <div class="prominent-img-frame">
-    <img src="p0.webp" alt="Shubh Vivah Background">
-  </div>
-</section>
-
-<div class="divider-flowers">
-  <div class="stem"></div>
-  <svg viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
-  <div class="stem"></div>
-</div>
-
-<section class="band" id="page2">
-  <div class="wrap">
-    <div class="blessings-text">
-      With the blessings of Sawariya Seth
-    </div>
-    <div class="prominent-img-frame">
-      <img src="p2.webp" alt="Sawariya Seth Blessings Background">
-    </div>
-  </div>
-</section>
-
-<div class="divider-flowers">
-  <div class="stem"></div>
-  <svg viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
-  <div class="stem"></div>
-</div>
-
-<section class="band" id="page3">
-  <div class="wrap">
-    <div class="heading-block">
-      <div class="eyebrow">Personal Invitation</div>
-      <h2>You're Invited</h2>
-    </div>
-    <div class="welcome-copy">
-      <p>Amid the regal palaces and quiet lakes of Udaipur, Saloni and Sahil begin their eternal journey. We request the honor of your presence and blessings.</p>
+    <div id="audio-overlay">
+        <h2>Saloni & Sahil</h2>
+        <p class="subtext">23 — 24 October 2026</p>
+        <button class="btn-enter" onclick="startExperience()">Open Invitation</button>
     </div>
 
-    <div class="prominent-img-frame">
-      <img src="p3.webp" alt="Invitation Background">
-    </div>
+    <audio id="bg-music" loop preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
-    <div class="family-grid">
-      <div class="family-card">
-        <h3>SALONI ROHIRA</h3>
-        <div class="family-member">
-          <span class="relation">Granddaughter of</span>
-          <span class="name">Late Smt. Sheela Devi Rohira &amp;<br>Late Shri Mohanlal Ji Rohira</span>
+    <section class="page" id="p1">
+        <div class="content-box" style="margin-top: 20px;">
+            <p class="subtext">✦ SHUBH VIVAH ✦</p>
+            <p style="margin-top: 12px;">Together with their families</p>
+            <h1>Saloni & Sahil</h1>
+            <p class="subtext">Rohira Family &nbsp;·&nbsp; Bajaj Family</p>
+            <p style="margin-top: 15px; font-weight: bold;">23 — 24 October 2026 &nbsp;|&nbsp; Udaipur</p>
         </div>
-        <div class="family-member">
-          <span class="relation">Daughter of</span>
-          <span class="name">Smt. Nisha Rohira &amp;<br>Shri Deepak Rohira</span>
+    </section>
+
+    <section class="page" id="p2">
+        <div class="content-box" style="margin-top: 220px;">
+            <p style="font-size: 1.1rem; font-style: italic;">With the blessings of</p>
+            <h2>Sawariya Seth</h2>
         </div>
-      </div>
+    </section>
 
-      <div style="text-align:center; font-family:'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gold-bright); font-style: italic;">&amp;</div>
-
-      <div class="family-card">
-        <h3>SAHIL BAJAJ</h3>
-        <div class="family-member">
-          <span class="relation">Grandson of</span>
-          <span class="name">Smt. Meera Bai Ji Bajaj &amp;<br>Late Shri Lajpat Rai Ji Bajaj</span>
+    <section class="page" id="p3">
+        <div class="content-box">
+            <h2>You're Invited</h2>
+            <p style="font-size: 0.85rem; margin-bottom: 12px;">Amid the regal palaces and quiet lakes of Udaipur, Saloni and Sahil begin their eternal journey. We request the honor of your presence and blessings.</p>
+            
+            <p style="font-weight: bold;">SALONI ROHIRA</p>
+            <p class="subtext">Granddaughter of Late Smt. Sheela Devi Rohira & Late Shri Mohanlal Ji Rohira</p>
+            <p class="subtext">Daughter of Smt. Nisha Rohira and Shri. Deepak Rohira</p>
+            
+            <div class="divider">&amp;</div>
+            
+            <p style="font-weight: bold;">SAHIL BAJAJ</p>
+            <p class="subtext">Grandson of Smt. Meera Bai Ji Bajaj & Late Shri Lajpat Rai Ji Bajaj</p>
+            <p class="subtext">Son of Smt. Riya Bajaj & Shri. Kamal Bajaj</p>
         </div>
-        <div class="family-member">
-          <span class="relation">Son of</span>
-          <span class="name">Smt. Riya Bajaj &amp;<br>Shri Kamal Bajaj</span>
+    </section>
+
+    <section class="page" id="p4">
+        <div class="content-box">
+            <p class="subtext">SAVE THE DATE</p>
+            <h2>A Royal Celebration</h2>
+            <div class="timer-container">
+                <div class="timer-unit">
+                    <div class="timer-number" id="days">--</div>
+                    <div class="timer-label">Days</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-number" id="hours">--</div>
+                    <div class="timer-label">Hours</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-number" id="mins">--</div>
+                    <div class="timer-label">Mins</div>
+                </div>
+                <div class="timer-unit">
+                    <div class="timer-number" id="secs">--</div>
+                    <div class="timer-label">Secs</div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<div class="divider-flowers">
-  <div class="stem"></div>
-  <svg viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
-  <div class="stem"></div>
-</div>
+    <section class="page" id="p5">
+        <div class="content-box" style="margin-top: 40px;">
+            <h3>23 October</h3>
+            <h2>Engagement & Cocktail</h2>
+            <p style="font-weight: bold; margin-bottom: 8px;">Evening 8:00 PM Onwards</p>
+            <p class="subtext">An evening of music, dance performances, and celebration at Hari Priya Resort.</p>
+        </div>
+    </section>
 
-<section class="band" id="page4">
-  <div class="wrap">
-    <div class="heading-block">
-      <div class="eyebrow">Save the Date</div>
-      <h2>A Royal Celebration</h2>
-      <div class="countdown" id="countdown">
-        <div class="unit"><div class="num" id="cd-days">00</div><div class="lbl">Days</div></div>
-        <div class="unit"><div class="num" id="cd-hours">00</div><div class="lbl">Hours</div></div>
-        <div class="unit"><div class="num" id="cd-mins">00</div><div class="lbl">Mins</div></div>
-        <div class="unit"><div class="num" id="cd-secs">00</div><div class="lbl">Secs</div></div>
-      </div>
-    </div>
+    <section class="page" id="p6">
+        <div class="content-box" style="margin-top: 60px;">
+            <h3>24 October</h3>
+            <h2>Wedding & Pheras</h2>
+            <p style="font-weight: bold; margin-bottom: 8px;">Afternoon 2:30 PM</p>
+            <p class="subtext">Saloni and Sahil take their vows in a traditional ceremony, surrounded by love.</p>
+        </div>
+    </section>
 
-    <div class="prominent-img-frame">
-      <img src="p4.webp" alt="Save The Date Background">
-    </div>
-  </div>
-</section>
+    <section class="page" id="p7">
+        <div class="content-box" style="margin-top: 80px;">
+            <h3>24 October</h3>
+            <h2>Reception</h2>
+            <p style="font-weight: bold; margin-bottom: 8px;">Evening 8:00 PM</p>
+            <p class="subtext">An evening of feasting and celebration under the Udaipur sky.</p>
+        </div>
+    </section>
 
-<div class="divider-flowers">
-  <div class="stem"></div>
-  <svg viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
-  <div class="stem"></div>
-</div>
+    <section class="page" id="p8">
+        <div class="content-box">
+            <h2>Destination</h2>
+            <h3>Hari Priya Resort</h3>
+            <p class="subtext" style="margin-top: 6px;">City of Lakes, Udaipur</p>
+        </div>
+    </section>
 
-<section class="band" id="page5">
-  <div class="wrap">
-    <div class="heading-block">
-      <div class="eyebrow">Event Details</div>
-    </div>
-    <div class="single-event-card">
-      <div class="day">23 October</div>
-      <h3>Engagement &amp; Cocktail</h3>
-      <span class="time">Evening 8:00 PM Onwards</span>
-      <p>An evening of music, dance performances, and celebration at Hari Priya Resort.</p>
-    </div>
+    <script>
+        // Audio playback handler to work within modern browser autoplay policies
+        function startExperience() {
+            const music = document.getElementById('bg-music');
+            music.play().catch(error => console.log("Audio play blocked:", error));
+            document.getElementById('audio-overlay').style.display = 'none';
+        }
 
-    <div class="prominent-img-frame">
-      <img src="p1.webp" alt="Engagement Event Background">
-    </div>
-  </div>
-</section>
+        // Live Countdown Calculation to 23 October 2026 00:00:00
+        const targetDate = new Date("October 23, 2026 00:00:00").getTime();
 
-<section class="band" id="page6">
-  <div class="wrap">
-    <div class="single-event-card">
-      <div class="day">24 October</div>
-      <h3>Wedding &amp; Pheras</h3>
-      <span class="time">Afternoon 2:30 PM</span>
-      <p>Saloni and Sahil take their vows in a traditional ceremony, surrounded by love.</p>
-    </div>
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
 
-    <div class="prominent-img-frame">
-      <img src="p6.webp" alt="Wedding Pheras Background">
-    </div>
-  </div>
-</section>
+            if (distance < 0) {
+                document.getElementById("days").innerText = "0";
+                document.getElementById("hours").innerText = "0";
+                document.getElementById("mins").innerText = "0";
+                document.getElementById("secs").innerText = "0";
+                return;
+            }
 
-<section class="band" id="page7">
-  <div class="wrap">
-    <div class="single-event-card">
-      <div class="day">24 October</div>
-      <h3>Reception</h3>
-      <span class="time">Evening 8:00 PM</span>
-      <p>An evening of feasting and celebration under the Udaipur sky.</p>
-    </div>
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((distance % (1000 * 60)) / 1000);
 
-    <div class="prominent-img-frame">
-      <img src="p7.webp" alt="Reception Event Background">
-    </div>
-  </div>
-</section>
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("mins").innerText = mins;
+            document.getElementById("secs").innerText = secs;
+        }
 
-<div class="divider-flowers">
-  <div class="stem"></div>
-  <svg viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
-  <div class="stem"></div>
-</div>
-
-<section class="band" id="page8">
-  <div class="wrap">
-    <div class="heading-block">
-      <div class="eyebrow">Location</div>
-      <h2>Destination</h2>
-    </div>
-
-    <div class="venue-box">
-      <h3>Hari Priya Resort</h3>
-      <p>City of Lakes, Udaipur</p>
-    </div>
-
-    <div class="prominent-img-frame">
-      <img src="p0.webp" alt="Destination Background">
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-mono">Saloni &amp; Sahil</div>
-  <p>23&ndash;24 October 2026 &nbsp;·&nbsp; Hari Priya Resort, Udaipur</p>
-</footer>
-
-<script>
-  // Countdown Timer Script
-  const target = new Date('2026-10-24T00:00:00');
-  function updateCountdown(){
-    const now = new Date();
-    let diff = target - now;
-    if(diff < 0) diff = 0;
-    document.getElementById('cd-days').textContent = String(Math.floor(diff / (1000*60*60*24))).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(Math.floor((diff / (1000*60*60)) % 24)).padStart(2,'0');
-    document.getElementById('cd-mins').textContent = String(Math.floor((diff / (1000*60)) % 60)).padStart(2,'0');
-    document.getElementById('cd-secs').textContent = String(Math.floor((diff / 1000) % 60)).padStart(2,'0');
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-
-  // Floating Particles Animation
-  const canvas = document.getElementById('bgCanvas');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  class Particle {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 3 + 1;
-      this.speedY = Math.random() * 0.8 + 0.3;
-      this.speedX = Math.random() * 0.4 - 0.2;
-      this.opacity = Math.random() * 0.5 + 0.2;
-      this.color = '#FFD700';
-    }
-    update() {
-      this.y += this.speedY;
-      this.x += this.speedX;
-      if (this.y > canvas.height) { this.y = -10; this.x = Math.random() * canvas.width; }
-    }
-    draw() {
-      ctx.save();
-      ctx.globalAlpha = this.opacity;
-      ctx.fillStyle = this.color;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-  }
-
-  for (let i = 0; i < 35; i++) { particles.push(new Particle()); }
-  function animateCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animateCanvas);
-  }
-  animateCanvas();
-
-  // Audio Player Toggle
-  const musicBtn = document.getElementById('musicToggle');
-  const bgmEl = document.getElementById('bgm');
-  let isPlaying = false;
-
-  musicBtn.addEventListener('click', async () => {
-    if(!isPlaying){
-      try {
-        await bgmEl.play();
-        isPlaying = true;
-        musicBtn.querySelector('.music-label').textContent = 'Playing';
-      } catch(e) {
-        alert('Please add audio file: "GEHRA HUA.mp3"');
-      }
-    } else {
-      bgmEl.pause();
-      isPlaying = false;
-      musicBtn.querySelector('.music-label').textContent = 'Music';
-    }
-  });
-</script>
-
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>
