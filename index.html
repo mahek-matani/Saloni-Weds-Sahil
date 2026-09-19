@@ -144,6 +144,7 @@
         .js .reveal.from-left  { transform: translateX(-50px); }
         .js .reveal.from-right { transform: translateX(50px); }
         .js .reveal.zoom       { transform: scale(.8); }
+        .js .reveal.soft       { transform: scale(.96); }
         .js .reveal.visible    { opacity: 1; transform: none; }
 
         /* ---------- First page (full illustration, never cropped) ---------- */
@@ -335,6 +336,9 @@
             animation: twinkle var(--dur) ease-in-out var(--delay) infinite;
         }
 
+        .fx.paused .petal,
+        .fx.paused .spark { animation-play-state: paused; }
+
         /* ---------- Family details ---------- */
         .family-section {
             padding: 60px 20px;
@@ -394,18 +398,15 @@
             .with-divider { flex: 0 0 auto; margin: 0; }
         }
 
-        /* ---------- Events ---------- */
-        .events-section {
-            padding: 40px 20px 80px;
-            max-width: 1000px;
-            margin: 0 auto;
+        /* ---------- Events: one full illustrated page per celebration ---------- */
+        .events-intro {
+            padding: 50px 20px 34px;
         }
 
         .section-title {
             font-family: 'Cinzel', serif;
             font-size: 2.2rem;
             color: var(--deep-maroon);
-            margin-bottom: 40px;
             text-transform: uppercase;
             letter-spacing: 2px;
             position: relative;
@@ -421,54 +422,111 @@
         .js .section-title::after { width: 0; }
         .js .section-title.in-view::after { animation: growLine 1s var(--ease-out) .4s both; }
 
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-            gap: 25px;
+        /* Each page keeps its illustration's exact shape, so the whole picture is always visible */
+        .event-page {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background-color: var(--paper);
+            border-bottom: 5px solid var(--primary-gold);
+        }
+        .event-page::before {
+            content: '';
+            position: absolute;
+            inset: -40px;
+            z-index: 0;
+            background: var(--page-img) center / cover no-repeat;
+            filter: blur(22px);
+            opacity: .85;
         }
 
-        .event-card {
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 30px 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary-gold);
-            transition: all 0.3s ease;
+        .page-card {
+            --u: min(1vw, 5.2px);
+            position: relative;
+            z-index: 1;
+            width: min(100%, 520px);
+            margin: 0 auto;
+            aspect-ratio: var(--ratio);
+            background: var(--paper) var(--page-img) center / cover no-repeat;
+            overflow: hidden;
+        }
+        .page-card > .fx {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+            --h: 924px;
         }
 
+        /* The open area of each illustration where the text lives (set per page) */
+        .page-safe {
+            --s: calc(var(--u) * var(--k, 1));
+            position: absolute;
+            z-index: 2;
+            left: var(--l);
+            right: var(--r);
+            top: var(--t);
+            bottom: var(--b);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .icon-wrap { margin-bottom: calc(var(--s) * 1); }
         .event-icon {
-            font-size: 2rem;
-            line-height: 1;
-            margin-bottom: 10px;
+            font-size: calc(var(--s) * 7.5);
+            line-height: 1.1;
             display: inline-block;
             animation: bob 3.2s ease-in-out calc(var(--i, 0) * .5s) infinite;
         }
 
-        .event-card h3 {
-            font-family: 'Cinzel', serif;
+        .page-safe h3 {
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+            font-size: calc(var(--s) * 10.5);
+            line-height: 1.05;
             color: var(--deep-maroon);
-            font-size: 1.4rem;
-            margin-bottom: 12px;
+            text-wrap: balance;
+            text-shadow: 0 1px 0 rgba(255,255,255,.7), 0 2px 10px rgba(255,255,255,.7);
         }
         .event-date {
             font-weight: 600;
-            color: var(--primary-gold);
-            margin-bottom: 8px;
-        }
-        .event-details {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 12px;
+            font-size: calc(var(--s) * 3.6);
+            line-height: 1.35;
+            letter-spacing: .01em;
+            color: #9A7414;
+            margin-top: calc(var(--s) * 1.8);
+            text-shadow: 0 1px 6px rgba(255,255,255,.85);
         }
         .event-time {
-            font-size: 0.9rem;
-            color: #666;
+            font-size: calc(var(--s) * 3.4);
+            line-height: 1.4;
+            color: #4A2F2F;
+            margin-top: calc(var(--s) * .5);
+            text-shadow: 0 1px 6px rgba(255,255,255,.85);
+        }
+        .event-details {
+            font-size: calc(var(--s) * 3.4);
+            font-style: italic;
+            line-height: 1.4;
+            color: #5A4444;
+            text-wrap: balance;
+            margin-top: calc(var(--s) * .5);
+            text-shadow: 0 1px 6px rgba(255,255,255,.85);
         }
         .event-venue {
-            font-size: 0.85rem;
-            color: #777;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
+            font-size: calc(var(--s) * 3.1);
+            line-height: 1.4;
+            color: #5A4444;
+            max-width: calc(var(--s) * 46);
+            margin-top: calc(var(--s) * 2.6);
+            padding-top: calc(var(--s) * 1.8);
+            border-top: 1px solid rgba(154, 116, 20, .45);
+            text-wrap: balance;
+            text-shadow: 0 1px 6px rgba(255,255,255,.85);
         }
 
         /* ---------- Wishes ---------- */
@@ -546,11 +604,6 @@
         @media (hover: hover) {
             .countdown-box:hover { transform: translateY(-5px); }
             .person-card:hover   { transform: translateY(-5px); }
-            .event-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
-                border-top-color: var(--deep-maroon);
-            }
             .wish-group:hover { transform: scale(1.02); }
             .music-btn:hover {
                 transform: scale(1.15) rotate(10deg);
@@ -558,7 +611,6 @@
                 box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
             }
         }
-        .event-card:active { transform: scale(.98); }
 
         /* ---------- Tablets & phones ---------- */
         @media (max-width: 768px) {
@@ -566,8 +618,8 @@
                 padding: 45px 18px;
                 margin: 30px auto;
             }
-            .events-section { padding: 30px 16px 60px; }
-            .section-title { font-size: 1.7rem; margin-bottom: 30px; }
+            .events-intro { padding: 40px 16px 26px; }
+            .section-title { font-size: 1.7rem; }
             .wishes-section { padding: 45px 18px; }
         }
 
@@ -582,8 +634,6 @@
             .with-divider { font-size: 2.3rem; }
             .details { font-size: .9rem; }
 
-            .event-card { padding: 24px 16px; }
-            .event-card h3 { font-size: 1.25rem; }
             .section-title { font-size: 1.45rem; letter-spacing: 1px; }
             footer { font-size: .8rem; }
         }
@@ -670,36 +720,55 @@
         </div>
     </section>
 
-    <!-- Schedule of Events -->
-    <section class="events-section">
+    <!-- Schedule of Events: one full page per celebration -->
+    <section class="events-intro">
         <h2 class="section-title reveal">Wedding Celebrations</h2>
+    </section>
 
-        <div class="events-grid">
-            <div class="event-card reveal" style="--d:0s">
-                <div class="event-icon" style="--i:0">💍</div>
-                <h3>Ring & Rhythms</h3>
-                <p class="event-date">Friday, 23rd October 2026</p>
-                <p class="event-time">08:30 PM onwards</p>
-                <p class="event-details">An Evening To Remember</p>
-                <p class="event-venue">📍 Hari Priya Resort, Udaipur (Rajasthan)</p>
+    <!-- Page 1: Ring & Rhythms (engagement) -->
+    <section class="event-page"
+             style="--page-img:url('event-engagement.jpg'); --ratio:1152 / 2048; --paper:#F6ECE4; --l:16%; --r:16%; --t:20%; --b:37%; --k:1.1;">
+        <div class="page-card reveal soft" data-petals="#F4B6C2,#F9D5DC,#E8A598,#D4AF37,#FFD9A0">
+            <div class="fx" aria-hidden="true"></div>
+            <div class="page-safe">
+                <div class="icon-wrap reveal zoom"><div class="event-icon" style="--i:0">💍</div></div>
+                <h3 class="reveal" style="--d:.1s">Ring & Rhythms</h3>
+                <p class="event-date reveal" style="--d:.2s">Friday, 23rd October 2026</p>
+                <p class="event-time reveal" style="--d:.3s">08:30 PM onwards</p>
+                <p class="event-details reveal" style="--d:.4s">An Evening To Remember</p>
+                <p class="event-venue reveal" style="--d:.5s">📍 Hari Priya Resort, Udaipur (Rajasthan)</p>
             </div>
+        </div>
+    </section>
 
-            <div class="event-card reveal" style="--d:.15s">
-                <div class="event-icon" style="--i:1">🪔</div>
-                <h3>Wedding Vows</h3>
-                <p class="event-date">Saturday, 24th October 2026</p>
-                <p class="event-time">02:30 PM onwards</p>
-                <p class="event-details">Sealed With Love And Celebration</p>
-                <p class="event-venue">📍 Hari Priya Resort, Udaipur (Rajasthan)</p>
+    <!-- Page 2: Wedding Vows (wedding) -->
+    <section class="event-page"
+             style="--page-img:url('event-wedding.jpg'); --ratio:736 / 1318; --paper:#E9E6D6; --l:17%; --r:17%; --t:17%; --b:47%; --k:1.05;">
+        <div class="page-card reveal soft" data-petals="#F4B6C2,#F7C6C0,#FFD9A0,#D4AF37,#C9B8E8">
+            <div class="fx" aria-hidden="true"></div>
+            <div class="page-safe">
+                <div class="icon-wrap reveal zoom"><div class="event-icon" style="--i:1">🪔</div></div>
+                <h3 class="reveal" style="--d:.1s">Wedding Vows</h3>
+                <p class="event-date reveal" style="--d:.2s">Saturday, 24th October 2026</p>
+                <p class="event-time reveal" style="--d:.3s">02:30 PM onwards</p>
+                <p class="event-details reveal" style="--d:.4s">Sealed With Love And Celebration</p>
+                <p class="event-venue reveal" style="--d:.5s">📍 Hari Priya Resort, Udaipur (Rajasthan)</p>
             </div>
+        </div>
+    </section>
 
-            <div class="event-card reveal" style="--d:.3s">
-                <div class="event-icon" style="--i:2">✨</div>
-                <h3>Reception & Dinner</h3>
-                <p class="event-date">Saturday, 24th October 2026</p>
-                <p class="event-time">08:30 PM onwards</p>
-                <p class="event-details">A Night Under Stars</p>
-                <p class="event-venue">📍 Hari Priya Resort, Udaipur (Rajasthan)</p>
+    <!-- Page 3: Reception & Dinner (reception) -->
+    <section class="event-page"
+             style="--page-img:url('event-reception.jpg'); --ratio:1024 / 1536; --paper:#F6EFE3; --l:19%; --r:19%; --t:19%; --b:45%; --k:.9;">
+        <div class="page-card reveal soft" data-petals="#7FC8CF,#A8DCE0,#5FA8B8,#D4AF37,#CFE9EC">
+            <div class="fx" aria-hidden="true"></div>
+            <div class="page-safe">
+                <div class="icon-wrap reveal zoom"><div class="event-icon" style="--i:2">✨</div></div>
+                <h3 class="reveal" style="--d:.1s">Reception & Dinner</h3>
+                <p class="event-date reveal" style="--d:.2s">Saturday, 24th October 2026</p>
+                <p class="event-time reveal" style="--d:.3s">08:30 PM onwards</p>
+                <p class="event-details reveal" style="--d:.4s">A Night Under Stars</p>
+                <p class="event-venue reveal" style="--d:.5s">📍 Hari Priya Resort, Udaipur (Rajasthan)</p>
             </div>
         </div>
     </section>
@@ -779,42 +848,61 @@
         const timer = setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        /* ---------- Falling petals & sparkles over the first page ---------- */
+        /* ---------- Falling petals & sparkles (first page + each event page) ---------- */
         (function buildFx() {
-            const hero = document.querySelector(".hero");
-            const fx = document.getElementById("fx");
             const small = window.matchMedia("(max-width: 600px)").matches;
-            const colors = ["#E8A598", "#F7C6C0", "#D4AF37", "#F29A2E", "#FFD9A0"];
+            const defaultColors = ["#E8A598", "#F7C6C0", "#D4AF37", "#F29A2E", "#FFD9A0"];
             const rand = (min, max) => Math.random() * (max - min) + min;
 
-            const petals = small ? 12 : 22;
-            for (let i = 0; i < petals; i++) {
-                const p = document.createElement("span");
-                p.className = "petal";
-                p.style.setProperty("--x", rand(0, 100) + "%");
-                p.style.setProperty("--s", rand(9, 16) + "px");
-                p.style.setProperty("--c", colors[Math.floor(Math.random() * colors.length)]);
-                p.style.setProperty("--dur", rand(10, 18) + "s");
-                p.style.setProperty("--delay", (-rand(0, 18)) + "s");
-                p.style.setProperty("--sway", rand(-60, 60) + "px");
-                fx.appendChild(p);
+            function fill(fx, colors, petals, sparks) {
+                for (let i = 0; i < petals; i++) {
+                    const p = document.createElement("span");
+                    p.className = "petal";
+                    p.style.setProperty("--x", rand(0, 100) + "%");
+                    p.style.setProperty("--s", rand(9, 16) + "px");
+                    p.style.setProperty("--c", colors[Math.floor(Math.random() * colors.length)]);
+                    p.style.setProperty("--dur", rand(10, 18) + "s");
+                    p.style.setProperty("--delay", (-rand(0, 18)) + "s");
+                    p.style.setProperty("--sway", rand(-60, 60) + "px");
+                    fx.appendChild(p);
+                }
+                for (let i = 0; i < sparks; i++) {
+                    const s = document.createElement("span");
+                    s.className = "spark";
+                    s.style.setProperty("--x", rand(2, 98) + "%");
+                    s.style.setProperty("--y", rand(4, 96) + "%");
+                    s.style.setProperty("--s", rand(2, 4.5) + "px");
+                    s.style.setProperty("--dur", rand(2.5, 5) + "s");
+                    s.style.setProperty("--delay", rand(0, 5) + "s");
+                    fx.appendChild(s);
+                }
             }
 
-            const sparks = small ? 10 : 18;
-            for (let i = 0; i < sparks; i++) {
-                const s = document.createElement("span");
-                s.className = "spark";
-                s.style.setProperty("--x", rand(2, 98) + "%");
-                s.style.setProperty("--y", rand(4, 96) + "%");
-                s.style.setProperty("--s", rand(2, 4.5) + "px");
-                s.style.setProperty("--dur", rand(2.5, 5) + "s");
-                s.style.setProperty("--delay", rand(0, 5) + "s");
-                fx.appendChild(s);
-            }
+            const hosts = Array.from(document.querySelectorAll(".hero, .page-card"));
+            const fxOf = (host) => host.querySelector(":scope > .fx");
 
-            const setHeight = () => fx.style.setProperty("--h", hero.offsetHeight + "px");
-            setHeight();
-            window.addEventListener("resize", setHeight);
+            hosts.forEach((host) => {
+                const isHero = host.classList.contains("hero");
+                const colors = host.dataset.petals ? host.dataset.petals.split(",") : defaultColors;
+                fill(fxOf(host), colors,
+                     isHero ? (small ? 12 : 22) : (small ? 8 : 14),
+                     isHero ? (small ? 10 : 18) : (small ? 6 : 10));
+            });
+
+            const setHeights = () => hosts.forEach((host) =>
+                fxOf(host).style.setProperty("--h", host.offsetHeight + "px"));
+            setHeights();
+            window.addEventListener("resize", setHeights);
+
+            // Only animate the page that is on screen (saves battery on phones)
+            if ("IntersectionObserver" in window) {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        fxOf(entry.target).classList.toggle("paused", !entry.isIntersecting);
+                    });
+                }, { rootMargin: "120px" });
+                hosts.forEach((host) => io.observe(host));
+            }
         })();
 
         /* ---------- Scroll reveal ---------- */
@@ -823,7 +911,7 @@
 
             function finish(el) {
                 // Hand the element back to its normal CSS so hover effects stay snappy
-                el.classList.remove("reveal", "visible", "from-left", "from-right", "zoom");
+                el.classList.remove("reveal", "visible", "from-left", "from-right", "zoom", "soft");
             }
             function show(el) {
                 el.classList.add("visible", "in-view");
