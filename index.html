@@ -428,7 +428,9 @@
             isolation: isolate;
             overflow: hidden;
             background-color: var(--paper);
+            border-top: 5px solid var(--primary-gold);
             border-bottom: 5px solid var(--primary-gold);
+            box-shadow: 0 14px 36px rgba(92, 29, 36, 0.22);
         }
         .event-page::before {
             content: '';
@@ -527,6 +529,30 @@
             border-top: 1px solid rgba(154, 116, 20, .45);
             text-wrap: balance;
             text-shadow: 0 1px 6px rgba(255,255,255,.85);
+        }
+
+        /* Breathing space + ornament between the event pages */
+        .page-gap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 46px 20px;
+            color: var(--primary-gold);
+        }
+        .page-gap::before,
+        .page-gap::after {
+            content: '';
+            width: min(24vw, 110px);
+            height: 1px;
+            background: var(--primary-gold);
+            opacity: .8;
+        }
+        .page-gap span {
+            display: inline-block;
+            font-size: 1.4rem;
+            line-height: 1;
+            animation: spin 14s linear infinite;
         }
 
         /* ---------- Wishes ---------- */
@@ -731,7 +757,6 @@
         <div class="page-card reveal soft" data-petals="#F4B6C2,#F9D5DC,#E8A598,#D4AF37,#FFD9A0">
             <div class="fx" aria-hidden="true"></div>
             <div class="page-safe">
-                <div class="icon-wrap reveal zoom"><div class="event-icon" style="--i:0">💍</div></div>
                 <h3 class="reveal" style="--d:.1s">Ring & Rhythms</h3>
                 <p class="event-date reveal" style="--d:.2s">Friday, 23rd October 2026</p>
                 <p class="event-time reveal" style="--d:.3s">08:30 PM onwards</p>
@@ -741,13 +766,14 @@
         </div>
     </section>
 
+    <div class="page-gap reveal zoom" aria-hidden="true"><span>❖</span></div>
+
     <!-- Page 2: Wedding Vows (wedding) -->
     <section class="event-page"
              style="--page-img:url('event-wedding.jpg'); --ratio:736 / 1318; --paper:#E9E6D6; --l:17%; --r:17%; --t:17%; --b:47%; --k:1.05;">
         <div class="page-card reveal soft" data-petals="#F4B6C2,#F7C6C0,#FFD9A0,#D4AF37,#C9B8E8">
             <div class="fx" aria-hidden="true"></div>
             <div class="page-safe">
-                <div class="icon-wrap reveal zoom"><div class="event-icon" style="--i:1">🪔</div></div>
                 <h3 class="reveal" style="--d:.1s">Wedding Vows</h3>
                 <p class="event-date reveal" style="--d:.2s">Saturday, 24th October 2026</p>
                 <p class="event-time reveal" style="--d:.3s">02:30 PM onwards</p>
@@ -757,13 +783,14 @@
         </div>
     </section>
 
+    <div class="page-gap reveal zoom" aria-hidden="true"><span>❖</span></div>
+
     <!-- Page 3: Reception & Dinner (reception) -->
     <section class="event-page"
              style="--page-img:url('event-reception.jpg'); --ratio:1024 / 1536; --paper:#F6EFE3; --l:19%; --r:19%; --t:19%; --b:45%; --k:.9;">
         <div class="page-card reveal soft" data-petals="#7FC8CF,#A8DCE0,#5FA8B8,#D4AF37,#CFE9EC">
             <div class="fx" aria-hidden="true"></div>
             <div class="page-safe">
-                <div class="icon-wrap reveal zoom"><div class="event-icon" style="--i:2">✨</div></div>
                 <h3 class="reveal" style="--d:.1s">Reception & Dinner</h3>
                 <p class="event-date reveal" style="--d:.2s">Saturday, 24th October 2026</p>
                 <p class="event-time reveal" style="--d:.3s">08:30 PM onwards</p>
@@ -772,6 +799,8 @@
             </div>
         </div>
     </section>
+
+    <div class="page-gap reveal zoom" aria-hidden="true"><span>❖</span></div>
 
     <!-- Family Compliments -->
     <section class="wishes-section">
